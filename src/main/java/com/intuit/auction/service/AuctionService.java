@@ -1,31 +1,55 @@
 package com.intuit.auction.service;
 
-import com.intuit.auction.client.AuctionClient;
+import com.intuit.auction.core.enums.AuctionStatus;
+import com.intuit.auction.core.request.AuctionSearchRequest;
 import com.intuit.auction.entity.Auction;
+import com.intuit.auction.repository.AuctionRepository;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
-import com.intuit.auction.repository.AuctionRepository;
+import org.springframework.util.CollectionUtils;
 
+import java.time.Instant;
 import java.util.List;
+import java.util.Optional;
 
 @Service
-@Validated
 public class AuctionService {
 
     @Autowired
     private AuctionRepository auctionRepository;
 
-    @Autowired
-    private AuctionClient auctionClient;  // Inject the Feign client
 
     public Auction saveAuction(@NotNull Auction auction) {
-        return auctionRepository.save(auction);
+        if (isDuplicateProduct(auction.getProductDetails().getId())) {
+            return null;
+        }
+
+        try {
+            auction.setListingTimestamp(Instant.now().toEpochMilli());
+            auction.setAuctionStatus(AuctionStatus.LISTED);
+            return auctionRepository.save(auction);
+        } catch (Exception e) {
+            System.out.println("Failed to save auction");
+        }
+        return null;
     }
 
-    public List<Auction> searchAuctions(String query) {
-        // Use the Feign client to call another service
-        return auctionClient.getAuctions(query);
+    public List<Auction> searchAuctions(AuctionSearchRequest auctionSearchRequest) {
+        return auctionRepository.searchAuctions(auctionSearchRequest);
+    }
+
+    public Auction getAuctionById(AuctionSearchRequest auctionSearchRequest) {
+        Optional<Auction> optionalAuction = auctionRepository.findById(auctionSearchRequest.getId());
+        return optionalAuction.orElse(null);
+    }
+
+    private boolean isDuplicateProduct(String productId) {
+        AuctionSearchRequest auctionSearchRequest = new AuctionSearchRequest();
+        auctionSearchRequest.setProductId(productId);
+        if (!CollectionUtils.isEmpty(searchAuctions(auctionSearchRequest))) {
+            return true;
+        }
+        return false;
     }
 }
