@@ -39,8 +39,8 @@ public class AuctionService {
         return auctionRepository.searchAuctions(auctionSearchRequest);
     }
 
-    public Auction getAuctionById(AuctionSearchRequest auctionSearchRequest) {
-        Optional<Auction> optionalAuction = auctionRepository.findById(auctionSearchRequest.getId());
+    public Auction getAuctionById(String auctionId) {
+        Optional<Auction> optionalAuction = auctionRepository.findById(auctionId);
         return optionalAuction.orElse(null);
     }
 

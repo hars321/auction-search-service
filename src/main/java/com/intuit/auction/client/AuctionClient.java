@@ -1,10 +1,12 @@
 package com.intuit.auction.client;
 
 import com.intuit.auction.core.request.AuctionSearchRequest;
+import com.intuit.auction.entity.ApiResponse;
 import com.intuit.auction.entity.Auction;
 import com.intuit.auction.service.AuctionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,8 +19,11 @@ import java.util.List;
 public interface AuctionClient {
 
     @PostMapping("/v1/auctions/new")
-    List<Auction> createAuction(@RequestBody Auction auction);
+    ResponseEntity<ApiResponse<Auction>> createAuction(@RequestBody Auction auction);
 
     @PostMapping("/v1/auctions/search")
-    List<Auction> searchAuctions(@RequestBody AuctionSearchRequest auctionSearchRequest);
+    ResponseEntity<ApiResponse<List<Auction>>> searchAuctions(@RequestBody AuctionSearchRequest auctionSearchRequest);
+
+    @PostMapping("/v1/auctions/id")
+    ResponseEntity<ApiResponse<Auction>> getAuctionById(@RequestBody AuctionSearchRequest auctionSearchRequest);
 }

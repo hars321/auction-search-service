@@ -9,8 +9,8 @@ import java.util.Objects;
 
 @UtilityClass
 public class ValidationUtils {
-    public static boolean isValidAuction(Auction auction){
-        if(Objects.isNull(auction)
+    public static void isValidAuction(Auction auction) {
+        if (Objects.isNull(auction)
                 || Objects.isNull(auction.getAuctionPricing())
                 || Objects.isNull(auction.getAuctionPricing().getListedPrice())
                 || Objects.isNull(auction.getAuctionStartTimestamp())
@@ -23,10 +23,14 @@ public class ValidationUtils {
                 || StringUtils.isEmpty(auction.getProductDetails().getName())
                 || StringUtils.isEmpty(auction.getProductDetails().getCity())
                 || Objects.isNull(auction.getVendor())
-                || StringUtils.isEmpty(auction.getVendor().getId()))
-        {
-            return false;
+                || StringUtils.isEmpty(auction.getVendor().getId())) {
+            throw new RuntimeException("Invalid auction request");
         }
-        return true;
+    }
+
+    public static void isValidAuctionId(String auctionId) {
+        if(StringUtils.isEmpty(auctionId)){
+            throw new RuntimeException("Invalid auction Id");
+        }
     }
 }
