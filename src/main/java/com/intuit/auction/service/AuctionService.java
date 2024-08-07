@@ -4,6 +4,7 @@ import com.intuit.auction.core.enums.AuctionStatus;
 import com.intuit.auction.core.request.AuctionSearchRequest;
 import com.intuit.auction.entity.Auction;
 import com.intuit.auction.repository.AuctionRepository;
+import com.intuit.auction.service.states.processor.AuctionStateProcessor;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,10 +56,8 @@ public class AuctionService {
 
     public Auction updateAuctionStatus(String auctionId, String auctionStatus) {
         if (auctionRepository.existsById(auctionId)) {
-            // Set the ID for the updated document
             Auction auction = auctionRepository.findById(auctionId).get();
-            auction.setAuctionStatus(AuctionStatus.valueOf(auctionStatus));
-            // Save the updated document
+            AuctionStateProcessor.process(auction,AuctionStatus.valueOf(auctionStatus));
             return auctionRepository.save(auction);
         } else {
             throw new RuntimeException("Document with ID " + auctionId + " does not exist.");
