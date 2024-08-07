@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Data
 public class ProductDetails {
-    @Id
+
     private String id;
 
     public ProductDetails() {

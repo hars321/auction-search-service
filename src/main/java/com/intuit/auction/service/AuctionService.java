@@ -22,7 +22,7 @@ public class AuctionService {
 
     public Auction saveAuction(@NotNull Auction auction) {
         if (isDuplicateProduct(auction.getProductDetails().getId())) {
-            return null;
+            throw new RuntimeException("Auction for this product already exists");
         }
 
         try {
@@ -51,5 +51,17 @@ public class AuctionService {
             return true;
         }
         return false;
+    }
+
+    public Auction updateAuctionStatus(String auctionId, String auctionStatus) {
+        if (auctionRepository.existsById(auctionId)) {
+            // Set the ID for the updated document
+            Auction auction = auctionRepository.findById(auctionId).get();
+            auction.setAuctionStatus(AuctionStatus.valueOf(auctionStatus));
+            // Save the updated document
+            return auctionRepository.save(auction);
+        } else {
+            throw new RuntimeException("Document with ID " + auctionId + " does not exist.");
+        }
     }
 }

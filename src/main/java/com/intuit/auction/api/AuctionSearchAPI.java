@@ -34,6 +34,17 @@ public class AuctionSearchAPI {
         }
     }
 
+    @PutMapping("/update")
+    public ResponseEntity<ApiResponse<Auction>> updateAuctionStatus(@RequestParam("auctionId") String auctionId,@RequestParam("auctionStatus") String auctionStatus) {
+        try {
+            ValidationUtils.isValidAuctionId(auctionId);
+            Auction saved = auctionService.updateAuctionStatus(auctionId,auctionStatus);
+            return ResponseUtil.successResponse(saved, "Success");
+        } catch (Exception e) {
+            return ResponseUtil.errorResponse("Failed to create this auction", e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PostMapping("/search")
     public ResponseEntity<ApiResponse<List<Auction>>> searchAuctions(@RequestBody AuctionSearchRequest auctionSearchRequest) {
         List<Auction> auctionList = auctionService.searchAuctions(auctionSearchRequest);

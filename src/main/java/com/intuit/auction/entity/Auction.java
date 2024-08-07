@@ -11,6 +11,7 @@ import java.util.UUID;
 @Data
 @Document(indexName = "auction_listing_index")
 public class Auction {
+    @Id
     private String id;
     private UserDetails vendor;
     private ProductDetails productDetails;
