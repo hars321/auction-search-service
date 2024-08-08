@@ -1,23 +1,10 @@
 package com.intuit.auction.repository;
 
-import co.elastic.clients.elasticsearch.core.SearchResponse;
-import com.intuit.auction.constants.Constants;
 import com.intuit.auction.core.request.AuctionSearchRequest;
-import com.intuit.auction.entity.Auction;
+import com.intuit.auction.core.entity.Auction;
 import com.intuit.auction.repository.QueryBuilder.FilterQueryCreator;
-import lombok.AllArgsConstructor;
-import org.apache.tomcat.util.bcel.Const;
-import org.elasticsearch.action.search.SearchRequest;
-import org.elasticsearch.client.RequestOptions;
-import org.elasticsearch.index.query.BoolQueryBuilder;
-import org.elasticsearch.index.query.QueryBuilder;
-import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.elasticsearch.client.elc.ElasticsearchTemplate;
-import org.springframework.data.elasticsearch.client.elc.NativeQuery;
-import org.springframework.data.elasticsearch.client.elc.NativeQueryBuilder;
 import org.springframework.data.elasticsearch.core.SearchHit;
 import org.springframework.data.elasticsearch.core.query.*;
 import org.springframework.stereotype.Repository;

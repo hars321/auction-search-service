@@ -1,7 +1,7 @@
 package com.intuit.auction.repository;
 
 
-import com.intuit.auction.entity.Auction;
+import com.intuit.auction.core.entity.Auction;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;

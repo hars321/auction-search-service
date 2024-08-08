@@ -1,7 +1,7 @@
 package com.intuit.auction.service.states;
 
 import com.intuit.auction.core.enums.AuctionStatus;
-import com.intuit.auction.entity.Auction;
+import com.intuit.auction.core.entity.Auction;
 
 import java.util.HashSet;
 import java.util.Objects;

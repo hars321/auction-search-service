@@ -1,4 +1,4 @@
-package com.intuit.auction.entity;
+package com.intuit.auction.core.entity;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;

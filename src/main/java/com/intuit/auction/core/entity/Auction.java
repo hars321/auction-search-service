@@ -1,4 +1,4 @@
-package com.intuit.auction.entity;
+package com.intuit.auction.core.entity;
 
 import com.intuit.auction.core.enums.AuctionStatus;
 import lombok.Data;

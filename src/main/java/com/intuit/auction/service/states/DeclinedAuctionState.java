@@ -12,6 +12,8 @@ public class DeclinedAuctionState extends AbstractAuctionState {
         HashSet<AuctionStatus> auctionStatuses = new HashSet<AuctionStatus>();
         auctionStatuses.add(AuctionStatus.IN_PROGRESS);
         auctionStatuses.add(AuctionStatus.LISTED);
+        auctionStatuses.add(AuctionStatus.BIDDING_CLOSED);
+        auctionStatuses.add(AuctionStatus.AUCTION_COMPLETED);
         return auctionStatuses;
     }
 

@@ -1,6 +1,6 @@
 package com.intuit.auction.utils;
 
-import com.intuit.auction.entity.Auction;
+import com.intuit.auction.core.entity.Auction;
 import lombok.experimental.UtilityClass;
 import org.springframework.util.StringUtils;
 

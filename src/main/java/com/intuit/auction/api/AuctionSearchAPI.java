@@ -2,8 +2,8 @@ package com.intuit.auction.api;
 
 
 import com.intuit.auction.core.request.AuctionSearchRequest;
-import com.intuit.auction.entity.ApiResponse;
-import com.intuit.auction.entity.Auction;
+import com.intuit.auction.core.entity.ApiResponse;
+import com.intuit.auction.core.entity.Auction;
 import com.intuit.auction.service.AuctionService;
 import com.intuit.auction.utils.ResponseUtil;
 import com.intuit.auction.utils.ValidationUtils;

@@ -1,12 +1,9 @@
 package com.intuit.auction.client;
 
 import com.intuit.auction.core.request.AuctionSearchRequest;
-import com.intuit.auction.entity.ApiResponse;
-import com.intuit.auction.entity.Auction;
-import com.intuit.auction.service.AuctionService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.intuit.auction.core.entity.ApiResponse;
+import com.intuit.auction.core.entity.Auction;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

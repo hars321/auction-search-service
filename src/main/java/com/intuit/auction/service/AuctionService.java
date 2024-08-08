@@ -2,7 +2,7 @@ package com.intuit.auction.service;
 
 import com.intuit.auction.core.enums.AuctionStatus;
 import com.intuit.auction.core.request.AuctionSearchRequest;
-import com.intuit.auction.entity.Auction;
+import com.intuit.auction.core.entity.Auction;
 import com.intuit.auction.repository.AuctionRepository;
 import com.intuit.auction.service.states.processor.AuctionStateProcessor;
 import jakarta.validation.constraints.NotNull;

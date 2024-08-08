@@ -1,6 +1,6 @@
 package com.intuit.auction.utils;
 
-import com.intuit.auction.entity.ApiResponse;
+import com.intuit.auction.core.entity.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 

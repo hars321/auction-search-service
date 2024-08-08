@@ -1,11 +1,8 @@
 package com.intuit.auction.service.states.processor;
 
 import com.intuit.auction.core.enums.AuctionStatus;
-import com.intuit.auction.entity.Auction;
-import com.intuit.auction.service.states.CompletedAuctionState;
-import com.intuit.auction.service.states.DeclinedAuctionState;
-import com.intuit.auction.service.states.InProgressAuctionState;
-import com.intuit.auction.service.states.ListedAuctionState;
+import com.intuit.auction.core.entity.Auction;
+import com.intuit.auction.service.states.*;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,9 +12,11 @@ public class AuctionStateProcessor {
             case LISTED:
                 new ListedAuctionState().changeState(auction, nextAuctionStatus);
                 break;
-            case COMPLETED:
+            case AUCTION_COMPLETED:
                 new CompletedAuctionState().changeState(auction, nextAuctionStatus);
                 break;
+            case BIDDING_CLOSED:
+                new BiddingClosedAuctionState().changeState(auction,nextAuctionStatus);
             case IN_PROGRESS:
                 new InProgressAuctionState().changeState(auction, nextAuctionStatus);
                 break;
